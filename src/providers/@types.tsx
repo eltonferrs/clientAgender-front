@@ -28,7 +28,7 @@ export interface ClientProviderProps {
 }
 
 export interface IClientContext {
-    getContacts: () => Promise<void>;
+    loading:boolean;
     loginClient: (order: ILoginData) => Promise<void>
 }
 

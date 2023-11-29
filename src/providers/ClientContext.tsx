@@ -1,4 +1,4 @@
-import { createContext, useState } from "react"
+import { createContext, useEffect, useState } from "react"
 import { api } from "../services/api"
 import { ClientProviderProps, IClientContext, ILoginData } from "./@types"
 import {useNavigate } from "react-router-dom"
@@ -10,6 +10,18 @@ export const ClientContext = createContext({} as IClientContext)
 export const ClientProvider = ({children}:ClientProviderProps) => {
     
     const navigate = useNavigate()
+    const [loading, setloading] = useState(true)
+
+    useEffect(()=>{
+        const token = localStorage.getItem("@ClintAgender:token")
+        if(!token){
+            setloading(false)
+            navigate("/")
+            return
+        }
+        api.defaults.headers.common.Authorization = `Bearer ${token}`
+        setloading(false)
+    },[])
     const loginClient =async (order:ILoginData) => {
         try {
             const {data} = await api.post('/clients/login', order)
@@ -21,21 +33,8 @@ export const ClientProvider = ({children}:ClientProviderProps) => {
             toast.error("Erro no login")
         }      
     }
-    
-    const getContacts = async () => {
-         try {
-                await api.get("/contact")
-             .then(response => {
-              console.log(response)
-             })
-             
-          } catch (error) {
-              console.log(error)
-          } 
-      }
-
       return (
-        <ClientContext.Provider value={{getContacts, loginClient}}>
+        <ClientContext.Provider value={{loginClient, loading }}>
             {children}
         </ClientContext.Provider>
       )
