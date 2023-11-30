@@ -18,6 +18,16 @@ export interface IContact {
     registered: string;
 }
 
+export interface IcontatctType{
+    contact: IContact
+}
+
+export interface ICreateContact {
+    email: string;
+    name: string;
+    cellphone: string;
+}
+
 export interface ILoginData {
     email: string;
     password: string;
@@ -34,4 +44,8 @@ export interface IClientContext {
 
 export interface IContactContext {
     getContacts: () => Promise<void>;
+    contacts: IContact[];
+    createContact: (order: ICreateContact) => Promise<void>;
+    updateContact: (order: IContact) => Promise<void>;
+    deleteContact: (id: string) => Promise<void>;
 }
