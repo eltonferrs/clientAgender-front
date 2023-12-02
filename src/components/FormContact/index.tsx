@@ -16,13 +16,14 @@ export const Formcontact = () =>{
     }
     return(
         <form onSubmit={handleSubmit(submit)}>
+            <h2>Adicione um Novo Contato</h2>
             <Input type="text" placeholder="digite o nome" 
             {...register('name')} errors={errors.name} />
             <Input  type="email" placeholder="digite o email" 
             {...register('email')} errors={errors.email} />
             <Input  type="text" placeholder="digite o celular" 
             {...register('cellphone')} errors={errors.cellphone} />
-            <button type="submit">ze</button>
+            <button type="submit">Adicionar</button>
         </form>
     )
 }

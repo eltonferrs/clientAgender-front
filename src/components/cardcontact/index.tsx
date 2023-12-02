@@ -1,4 +1,5 @@
 import { IContact } from "../../providers/@types"
+import { Pencil, Trash2, UserRound, Phone, Mail } from "lucide-react";
 
 interface IcardContactType {
     contact: IContact;
@@ -8,13 +9,16 @@ interface IcardContactType {
 
 export const CardContact = ({contact,handleModal,setcontact}: IcardContactType) =>{
     return (
-        <li>
-            <div>
-                <h3>{contact.name}</h3>
-                <p>{contact.cellphone}</p>
+        <li className="cardContact">
+            <div className="cardContact_data">
+                <span><UserRound/>{contact.name}</span>
+                <span><Phone/>{contact.cellphone}</span>
+                <span><Mail/>{contact.email}</span>
             </div>
-            <button onClick={()=>(handleModal("Edit"),setcontact(contact))}>Editar</button>
-            <button onClick={()=>(handleModal("Delete"),setcontact(contact))}>Deletar</button>
+            <div className="cardContact_buttonbox">
+                <button onClick={()=>(handleModal("Edit"),setcontact(contact))}><Pencil /></button>
+                <button onClick={()=>(handleModal("Delete"),setcontact(contact))}><Trash2 /></button>
+            </div>
         </li>
     )
 }

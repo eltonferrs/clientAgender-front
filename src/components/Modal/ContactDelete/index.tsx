@@ -14,10 +14,10 @@ export const ContactDelete = ({contactId,handleModal}:IContactType) =>{
     }
     return (
         <div>
-            <h2>Você Tem certeza que deseja escçuir contato</h2>
+            <h2>Você Tem certeza que deseja excluir contato</h2>
             <div>
                 <button onClick={submit}>Excluir Contato</button>
-                <button onClick={()=>handleModal("Delete")}>cancelar</button>
+                <button className="type-button-2" onClick={()=>handleModal("Delete")}>cancelar</button>
             </div>
         </div>
     )

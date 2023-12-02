@@ -10,6 +10,21 @@ export interface IClient {
     started: string;
 }
 
+export interface ICreateClient {
+    email: string;
+    name: string;
+    password: string;
+    cellphone: string;
+}
+
+export interface IUpdateClient {
+    id: string;
+    email?: string;
+    name?: string;
+    password?: string;
+    cellphone?: string;
+}
+
 export interface IContact {
     id: string;
     email: string;
@@ -39,7 +54,11 @@ export interface ClientProviderProps {
 
 export interface IClientContext {
     loading:boolean;
-    loginClient: (order: ILoginData) => Promise<void>
+    client: IClient;
+    loginClient: (order: ILoginData) => Promise<void>;
+    getClient: ()=> Promise<void>;
+    createClient: (order:ICreateClient)=> Promise<void>
+    updateClient: (order:IUpdateClient)=> Promise<void>;
 }
 
 export interface IContactContext {

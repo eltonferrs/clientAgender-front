@@ -24,13 +24,15 @@ export const ContactEdit = ({contact,handleModal}:IContactType) =>{
     }
     return(
         <form onSubmit={handleSubmit(submit)}>
+            <h2>Deseja atualizar contato?</h2>
             <Input type="text" placeholder="digite o nome" 
             {...register('name')} errors={errors.name} defaultValue={contact.name}/>
             <Input  type="email" placeholder="digite o email" 
             {...register('email')} errors={errors.email} defaultValue={contact.email}/>
             <Input  type="text" placeholder="digite o celular" 
             {...register('cellphone')} errors={errors.cellphone} defaultValue={contact.cellphone}/>
-            <button type="submit">ze</button>
+            <button type="submit">Atualizar</button>
+            <button type="button" className="type-button-2" onClick={()=>handleModal("Close")}>cancelar</button>
         </form>
     )
 }
